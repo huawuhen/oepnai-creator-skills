@@ -1,0 +1,7 @@
+interface:
+  display_name: "短剧五维分析"
+  short_description: "逐集拆解短剧全集剧本并生成导演可执行完整五维分析报告"
+  default_prompt: "Use $script-five-dimensional-analysis to analyze this short-drama script episode by episode."
+
+policy:
+  allow_implicit_invocation: true
