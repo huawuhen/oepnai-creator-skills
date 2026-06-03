@@ -38,6 +38,17 @@ The report must analyze the whole script, not just the first episode. It should 
    - Include an execution summary.
    - If the UI cannot show all text, display a preview but save/download the complete report.
 
+5. **Multi-batch stitching** (required for long scripts or when model context window limits analysis in one turn):
+   - Process the script in chunks (e.g., 10–20 episodes at a time, or up to model's effective context limit).
+   - Append each batch's per-episode section to a growing report file in the workspace.
+   - When all batches are done, generate the overall judgment and execution summary from a final read of the assembled per-episode sections — do NOT write these meta-sections before all episodes are analyzed.
+   - The final stitched report must:
+     - Use a single consistent heading structure across all episodes.
+     - Have no duplicate/redundant overall-judgment or execution-summary sections (keep exactly one of each at the top and bottom).
+     - Be flattened into one Markdown file (not left as fragments).
+   - If analysis of a later batch reveals missing context or contradictions in earlier episodes, revisit and update the affected sections as part of the final pass.
+   - See also: `references/batch_stitch_workflow.md` for a concrete multi-turn execution template.
+
 ## Output Standard
 
 The report should be execution-oriented, specific, and usable by production teams. Avoid generic summaries.
@@ -67,6 +78,11 @@ Before finishing, verify:
 - The report is not just plot retelling.
 - The five dimensions are integrated with episode-specific characters, scenes, conflicts, and actions.
 - The final Markdown headings are easy to parse and split per episode.
+- **For multi-batch reports, also verify:**
+  - All batch output fragments have been merged into one file.
+  - The overall judgment and execution summary sections exist exactly once each.
+  - Per-episode heading levels are consistent across all batches (no accidental level shift between chunk A and chunk B).
+  - No episode is missing or duplicated at batch boundaries.
 
 ## Useful Trigger Phrases
 
